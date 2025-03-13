@@ -83,6 +83,7 @@ Hamburger.addEventListener("click", () => {
       opacity: 1,
     });
   } else {
+    CloseServices()
     gsap.to(".hamburger", {
       gap: 15,
     });
@@ -104,6 +105,101 @@ Hamburger.addEventListener("click", () => {
   IsMobileNavOpen = !IsMobileNavOpen;
 });
 
+
+const ServiceCon = document.querySelector('.item.services')
+const ServiceContent = ServiceCon.querySelector(".item-content")
+const ServiceItemsCon = ServiceCon.querySelector('.item-data')
+const ServiceItems = ServiceItemsCon.querySelectorAll('.item')
+
+let ServiceHeight = 52
+let ServiceContentHeight = 56
+let ListenerAdded = false;
+let ServiceChildHeights = []
+let ContainerHeight = 0
+let MaxHeight = 0;
+function CloseServices(){
+  ServiceItems.forEach(Item => {
+    gsap.to(Item,{
+      height:ServiceHeight,
+    })
+    gsap.to(Item.querySelector('.drop-down'),{
+      rotate:0
+    })
+    Item.setAttribute('closed','true')
+  })
+  ContainerHeight = ServiceContentHeight
+  gsap.to(ServiceContent.querySelector('.drop-down'),{
+    rotate:0
+  })
+  gsap.to(ServiceCon,{
+    height:ContainerHeight
+  })
+}
+
+function AddLister(){
+  ServiceItems.forEach((Item,idx) => {
+    const ItemContent = Item.querySelector('.item-content')
+    const Child = Item.querySelector('.item-data')
+    ItemContent.addEventListener('click',() => {
+      let IsClosed = Item.getAttribute('closed') == 'true'
+      Item.setAttribute('closed',!IsClosed)
+      if(!IsClosed){
+        gsap.to(Item,{
+          height:ServiceChildHeights[idx].closed
+        })
+        gsap.to(Item.querySelector('.drop-down'),{
+          rotate:0
+        })
+        ContainerHeight -= ServiceChildHeights[idx].total 
+      } else {
+        gsap.to(Item,{
+          height:ServiceChildHeights[idx].total
+        })
+        gsap.to(Item.querySelector('.drop-down'),{
+          rotate:180
+        })
+        ContainerHeight += ServiceChildHeights[idx].total
+      }
+      OpenService()
+    })
+  })
+  ListenerAdded = true
+}
+
+function OpenService(){
+  ServiceItems.forEach(Item => {
+    const Child = Item.querySelector('.item-data')
+    const ItemRect = Item.querySelector('.item-content').getBoundingClientRect()
+    const ChildRect = Child.getBoundingClientRect()
+    const ItemObj = {
+      closed:ItemRect.height,
+      total:ItemRect.height + ChildRect.height
+    }
+    ServiceChildHeights.push(ItemObj)
+  })
+  ContainerHeight += ServiceContentHeight + ServiceChildHeights.length * ServiceHeight
+  gsap.to(ServiceContent.querySelector('.drop-down'),{
+    rotate:180
+  })
+  gsap.to(ServiceCon,{
+    height:ContainerHeight
+  })
+  if(!ListenerAdded) {
+    AddLister()
+  } else {
+  }
+}
+
+
+ServiceContent.addEventListener('click', e => {
+  const IsClosed = ServiceCon.getAttribute('closed') == 'true'
+  ServiceCon.setAttribute('closed',!IsClosed)
+  if(IsClosed){
+    OpenService()
+  } else {
+    CloseServices()
+  }
+})
 
 
 // const WorksCon = document.querySelector(".works-con");
