@@ -388,23 +388,23 @@ ServiceContent.addEventListener('click', e => {
 
 
 
-const SubChildOpenerCon = document.querySelectorAll('.sub-child-opener-con')
+// const SubChildOpenerCon = document.querySelectorAll('.sub-child-opener-con')
 
-SubChildOpenerCon.forEach((Con,i) => {
-    const Opener = Con.querySelector('.sub-child-opener')
-    const SubChilds = Con.querySelector('.sub-child-con')
-    Opener.addEventListener('click', (e) => {
-        e.preventDefault()
-        Con.classList.toggle('active')
-        SubChildOpenerCon.forEach((Con,j) => {
-          if(i !== j){
-            Con.classList.remove('active')
-          }
-        })
-    })
-    document.addEventListener('click', (e) => {
-        if (!Con.contains(e.target) && Con.classList.contains('active'))  // if the target is not a descendant of the container
-        SubChildOpenerCon.forEach(Con => Con.classList.remove('active'))
-    })
-})
+// SubChildOpenerCon.forEach((Con,i) => {
+//     const Opener = Con.querySelector('.sub-child-opener')
+//     const SubChilds = Con.querySelector('.sub-child-con')
+//     Opener.addEventListener('click', (e) => {
+//         e.preventDefault()
+//         Con.classList.toggle('active')
+//         SubChildOpenerCon.forEach((Con,j) => {
+//           if(i !== j){
+//             Con.classList.remove('active')
+//           }
+//         })
+//     })
+//     document.addEventListener('click', (e) => {
+//         if (!Con.contains(e.target) && Con.classList.contains('active'))  // if the target is not a descendant of the container
+//         SubChildOpenerCon.forEach(Con => Con.classList.remove('active'))
+//     })
+// })
 

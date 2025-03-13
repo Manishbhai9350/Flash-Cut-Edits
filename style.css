@@ -1,9 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@font-face {
+  font-family: 'gambarino';
+  src: url(./public/fonts/gambarino/Gambarino-Regular.woff2);
+}
+@font-face {
+  font-family: 'santoshi';
+  src: url(./public/fonts/santoshi/Satoshi-Variable.woff2);
+}
+
+
 * {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
+  /* color: black; */
   box-sizing: border-box;
+}
+
+.courier {
+  font-family: "Courier Prime", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.gambarino {
+  font-family: 'gambarino';
+}
+
+.santoshi {
+  font-family: 'santoshi';
 }
 
 html,
@@ -212,15 +238,14 @@ nav {
     align-items: center;
     padding: .3rem;
     .icon {
-      height: 70px;
-      width: 70px;
+      height: 130px;
+      aspect-ratio: 1;
     }
   }
   .sub-child-opener-con {
-    &.active {
-      background: white;
+    &:hover {
       p {
-        color: black;
+        color: salmon;
       }
       .sub-child-con {
         display: flex!important;
@@ -258,10 +283,9 @@ nav {
       }
 
       .sub-child-con {
-        background: white;
+        /* background: white; */
         width: fit-content;
         height: auto;
-        border: 1px solid black;
         position: absolute;
         top: 100%;
         left: 0;
@@ -274,11 +298,10 @@ nav {
         z-index: 99999;
 
         &.graphic-sub-con {
+          width: 100%;
           left: auto;
-          right: 0;
           .sub-child-con-sub {
-            left: auto;
-            right: 100%;
+            left:100%;
             /* align-items: flex-end; */
           }
         }
@@ -294,7 +317,7 @@ nav {
         a,
         p {
           text-align: center;
-          color: black;
+          color: white;
           white-space: nowrap;
           font-size: 0.98rem;
         }
@@ -312,7 +335,7 @@ nav {
       }
 
       .sub-child-con-sub {
-        background: white;
+        /* background: white; */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -325,16 +348,13 @@ nav {
         top: 0%;
         left: 100%;
         display: none;
-        border: 1px solid black;
 
         a,
         p {
           cursor: pointer;
-          opacity: 0.7;
           transition: all 0.3s ease;
-
           &:hover {
-            opacity: 1;
+            color: salmon;
           }
         }
       }
@@ -452,7 +472,7 @@ nav {
   margin-top: 10rem;
   position: relative;
   z-index: 10;
-  background: white;
+  background: black;
   padding-block: 2rem;
 
   .service-heading {
