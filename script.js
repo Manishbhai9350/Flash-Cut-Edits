@@ -84,6 +84,7 @@ Hamburger.addEventListener("click", () => {
     });
   } else {
     CloseServices()
+    CloseGraphics()
     gsap.to(".hamburger", {
       gap: 15,
     });
@@ -106,6 +107,40 @@ Hamburger.addEventListener("click", () => {
 });
 
 
+const GraphicDesignCon = document.querySelector('.mobile-nav .item.graphic')
+const GraphicContent = GraphicDesignCon.querySelector('.item-content')
+const GraphicData = GraphicDesignCon.querySelector(".item-data")
+
+const DataHeight = 96
+const ContentHeight = 50
+
+function CloseGraphics(){
+  GraphicDesignCon.setAttribute('closed','true')
+  gsap.to(GraphicDesignCon.querySelector('.drop-down'),{
+    rotate:0
+  })
+  gsap.to(GraphicDesignCon,{
+    height: ContentHeight 
+  })
+}
+
+GraphicContent.addEventListener('click',e => {
+  const IsClosed = GraphicDesignCon.getAttribute('closed') == 'true'
+  GraphicDesignCon.setAttribute('closed',!IsClosed)
+  if(IsClosed) {
+    gsap.to(GraphicDesignCon.querySelector('.drop-down'),{
+      rotate:180
+    })
+    gsap.to(GraphicDesignCon,{
+      height: ContentHeight + DataHeight
+    })
+  } else {
+    CloseGraphics()
+  }
+})
+
+
+
 const ServiceCon = document.querySelector('.item.services')
 const ServiceContent = ServiceCon.querySelector(".item-content")
 const ServiceItemsCon = ServiceCon.querySelector('.item-data')
@@ -115,7 +150,7 @@ let ServiceHeight = 52
 let ServiceContentHeight = 56
 let ListenerAdded = false;
 let ServiceChildHeights = []
-let ContainerHeight = 0
+let ContainerHeight = ServiceContentHeight
 let MaxHeight = 0;
 function CloseServices(){
   ServiceItems.forEach(Item => {
@@ -128,6 +163,7 @@ function CloseServices(){
     Item.setAttribute('closed','true')
   })
   ContainerHeight = ServiceContentHeight
+  ServiceCon.setAttribute('closed','true')
   gsap.to(ServiceContent.querySelector('.drop-down'),{
     rotate:0
   })
@@ -150,7 +186,7 @@ function AddLister(){
         gsap.to(Item.querySelector('.drop-down'),{
           rotate:0
         })
-        ContainerHeight -= ServiceChildHeights[idx].total 
+        CompressService(idx)
       } else {
         gsap.to(Item,{
           height:ServiceChildHeights[idx].total
@@ -158,26 +194,39 @@ function AddLister(){
         gsap.to(Item.querySelector('.drop-down'),{
           rotate:180
         })
-        ContainerHeight += ServiceChildHeights[idx].total
+        ExpandService(idx)
       }
-      OpenService()
     })
   })
   ListenerAdded = true
 }
 
+function ExpandService(idx){
+  gsap.to(ServiceCon,{
+    height:ServiceCon.getBoundingClientRect().height + ServiceChildHeights[idx].items
+  })
+}
+
+function CompressService(idx){
+  gsap.to(ServiceCon,{
+    height:ServiceCon.getBoundingClientRect().height - ServiceChildHeights[idx].items
+  })
+}
+
 function OpenService(){
+  ServiceChildHeights = []
   ServiceItems.forEach(Item => {
     const Child = Item.querySelector('.item-data')
     const ItemRect = Item.querySelector('.item-content').getBoundingClientRect()
     const ChildRect = Child.getBoundingClientRect()
     const ItemObj = {
       closed:ItemRect.height,
-      total:ItemRect.height + ChildRect.height
+      total:ItemRect.height + ChildRect.height,
+      items:ChildRect.height
     }
     ServiceChildHeights.push(ItemObj)
   })
-  ContainerHeight += ServiceContentHeight + ServiceChildHeights.length * ServiceHeight
+  ContainerHeight += ServiceChildHeights.reduce((Prev,Item) => Prev + Item.closed,0)
   gsap.to(ServiceContent.querySelector('.drop-down'),{
     rotate:180
   })

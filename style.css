@@ -59,8 +59,8 @@ main {
 
 .mobile-nav {
   width: 100%;
-  height: 70px;
-  position: fixed;
+  height: 80px;
+  position: absolute;
   top: 0;
   left: 0;
   display: none;
@@ -70,7 +70,7 @@ main {
   z-index: 9999999;
   padding-top: .5rem;
   .logo {
-    height: 100%;
+    height: 200%;
     aspect-ratio: 1;
     z-index: 9999999999;
   }
@@ -127,6 +127,12 @@ main {
     .services.item {
       .item-content h2 {
         border: none;
+      }
+    }
+
+    .graphic.item {
+      .item-content h2 {
+        text-align: center;
       }
     }
 
@@ -385,18 +391,28 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   .landing-socials {
     position: relative;
     z-index: 10;
   }
   h1 {
     color: white;
-    font-size: 6rem;
-    line-height: 3.5rem;
+    font-size: 9rem;
+    line-height: 6rem;
     text-transform: capitalize;
     pointer-events: none;
     z-index: 12;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-block:1rem;
+  }
+
+  .socials {
+    .social i {
+      font-size: 3rem;
+    }
   }
 
   .scroll {
@@ -446,6 +462,7 @@ nav {
     }
     p {
       letter-spacing: 1px;
+      font-family: Arial, Helvetica, sans-serif;
     }
     h1,p {
       color: white;
@@ -469,7 +486,6 @@ nav {
   width: 100%;
   height: auto;
   padding-inline: 2rem;
-  margin-top: 10rem;
   position: relative;
   z-index: 10;
   background: black;
@@ -477,7 +493,7 @@ nav {
 
   .service-heading {
     text-align: center;
-    color: seagreen;
+    color: white;
   }
 
   h1 {
@@ -493,9 +509,9 @@ nav {
   }
 
   h4 {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 100;
-    color: seagreen;
+    color: white;
     span {
       text-transform: capitalize;
       font-weight: 700;
@@ -582,7 +598,8 @@ nav {
         li {
           margin-block: 1rem;
           p {
-            font-size: 4w;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.3rem;
           }
         }
       }
@@ -627,6 +644,10 @@ nav {
   h3,p {
     color: white;
     text-align: center;
+  }
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.5px;
   }
   .contact {
     width: 100%;
@@ -761,6 +782,24 @@ video {
   object-fit: cover;
 }
 
+@media (max-width:1000px) {
+  .landing {
+    h1 {
+      font-size: 7rem;
+      line-height: 5rem;
+    }
+  }
+}
+
+@media (max-width:750px) {
+  .landing {
+    h1 {
+      font-size: 5rem;
+      line-height: 3rem;
+    }
+  }
+}
+
 @media (max-width: 900px) {
   .landing {
   }
@@ -794,7 +833,7 @@ video {
 
 @media (max-width:600px) {
   .contact-section {
-    background-image: url(./public/editor.jpg);
+    background-image: url(./public/);
     background-size: cover;
     background-position: 50% 50%;
     backdrop-filter: grayscale(100%);
@@ -826,46 +865,12 @@ video {
 }
 }
 
-@media (max-width: 450px) {
-
-  p {
-    font-size: 0.8rem;
-    line-height: 1rem;
-  }
-
-  .mobile-nav {
-    .item-content {
-      padding-inline: 0 !important;
-    }
-
-    .services h2 {
-      border-bottom: none;
-    }
-
-    .item-data {
-      .item-data-child {
-        .data-child {
-          padding-inline: .1rem !important;
-          display: flex;
-          justify-content: center !important;
-
-          a,
-          p {
-            width: 160px;
-            font-size: .8rem !important;
-            text-align: left;
-          }
-        }
-      }
-    }
-  }
-}
 
 @media (max-width: 700px) {
   .landing {
     h1 {
       width: 100%;
-      text-align: left;
+      text-align: center;
       font-size: 4.5rem!important;
     }
   }
@@ -992,8 +997,9 @@ video {
     gap: .5rem;
     h1 {
       width: 100%;
-      text-align: left;
-      font-size: 3rem!important;
+      text-align: center;
+      font-size: 4rem!important;
+      line-height: 3.5rem;
     }
   }
 
@@ -1027,6 +1033,81 @@ video {
                 font-weight: 300;
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 480px) {
+  .contact-section {
+    .contact-content {
+      p {
+        font-size: .8rem!important;
+        line-height: 1rem;
+      }
+    }
+    .visit {
+      .info-con {
+        .icon {
+          display: none!important;
+        }
+      }
+    }
+  }
+  .about-section {
+    .about-info {
+      p {
+        line-height: 1.4rem;
+      }
+    }
+  }
+  
+  .service-section {
+    h4{
+      font-size: 1.3rem!important;
+    }
+  }
+
+  .landing {
+    gap: 1rem;
+    h1 {
+      font-size: 3.3rem!important;
+      line-height: 2.3rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.4rem;
+      text-align: center;
+      max-width: 300px;
+      opacity: .8;
+      margin-top: .5rem;
+    }
+  }
+
+  .mobile-nav {
+    .item-content {
+      padding-inline: 0 !important;
+    }
+
+    .services h2 {
+      border-bottom: none;
+    }
+
+    .item-data {
+      .item-data-child {
+        .data-child {
+          padding-inline: .1rem !important;
+          display: flex;
+          justify-content: center !important;
+
+          a,
+          p {
+            width: 160px;
+            font-size: .8rem !important;
+            text-align: left;
           }
         }
       }
