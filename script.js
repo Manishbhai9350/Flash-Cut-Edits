@@ -2,458 +2,237 @@ import { Works } from "./data.js";
 console.clear();
 gsap.registerPlugin(ScrollTrigger, SplitType);
 
-// ScrollTrigger.create({
-//   trigger:".us-image .img",
-//   start:'top top',
-//   end:'',
-//   markers:true,
-//   pin:true,
-// })
-
-
-// document.addEventListener("mousemove", (e) => {
-//   const x = e.clientX,
-//     y = e.clientY;
-//   gsap.to(".mouse-follower", {
-//     top: y,
-//     left: x,
-//     duration: 0.5,
-//   });
-// });
-
-// const LineCons = gsap.utils.toArray(".line-con");
-// LineCons.forEach((LineCon) => {
-//   const Line = LineCon.querySelector(":scope > .line");
-//   LineCon.addEventListener("mouseenter", (e) => {
-//     gsap.killTweensOf(".mouse-follower");
-//     gsap.to(".mouse-follower", {
-//       opacity: 0,
-//     });
-//     gsap.set(Line, {
-//       transformOrigin: "left",
-//     });
-//     gsap.to(Line, {
-//       scaleX: 1,
-//       duration: 0.5,
-//     });
-//   });
-//   LineCon.addEventListener("mouseleave", (e) => {
-//     gsap.killTweensOf(".mouse-follower");
-//     gsap.set(Line, {
-//       transformOrigin: "right",
-//     });
-//     gsap.to(".mouse-follower", {
-//       opacity: 1,
-//       delay: 0.3,
-//       overwrite: true,
-//     });
-//     gsap.to(Line, {
-//       onComplete() {
-//         gsap.set(Line, {
-//           transformOrigin: "left",
-//         });
-//       },
-//       scaleX: 0,
-//       duration: 0.5,
-//     });
-//   });
-// });
-
 const Hamburger = document.querySelector(".hamburger");
 
 let IsMobileNavOpen = false;
-Hamburger.addEventListener("click", () => {
+
+function OpenNav() {
+  IsMobileNavOpen = true;
   gsap.killTweensOf([
     ".mobile-nav-items",
     ".hamburger .line:first-child",
     ".hamburger .line:last-child",
   ]);
+  gsap.to(".hamburger", {
+    gap: 0,
+  });
+  gsap.to(".hamburger .line:first-child", {
+    rotate: 45,
+  });
+  gsap.to(".hamburger .line:last-child", {
+    rotate: -45,
+  });
+  gsap.to(".mobile-nav-items", {
+    display: "flex",
+    opacity: 1,
+  });
+}
+
+function CloseNav() {
+  IsMobileNavOpen = false;
+  gsap.killTweensOf([
+    ".mobile-nav-items",
+    ".hamburger .line:first-child",
+    ".hamburger .line:last-child",
+  ]);
+  CloseServices();
+  CloseGraphics();
+  gsap.to(".hamburger", {
+    gap: 15,
+  });
+  gsap.to(".hamburger .line:first-child", {
+    rotate: 0,
+  });
+  gsap.to(".hamburger .line:last-child", {
+    rotate: 0,
+  });
+  gsap.to(".mobile-nav-items", {
+    opacity: 0,
+    onComplete() {
+      gsap.set(".mobile-nav-items", {
+        display: "none",
+      });
+    },
+  });
+}
+
+Hamburger.addEventListener("click", () => {
   if (!IsMobileNavOpen) {
-    gsap.to(".hamburger", {
-      gap: 0,
-    });
-    gsap.to(".hamburger .line:first-child", {
-      rotate: 45,
-    });
-    gsap.to(".hamburger .line:last-child", {
-      rotate: -45,
-    });
-    gsap.to(".mobile-nav-items", {
-      display: "flex",
-      opacity: 1,
-    });
+    OpenNav();
   } else {
-    CloseServices()
-    CloseGraphics()
-    gsap.to(".hamburger", {
-      gap: 15,
-    });
-    gsap.to(".hamburger .line:first-child", {
-      rotate: 0,
-    });
-    gsap.to(".hamburger .line:last-child", {
-      rotate: 0,
-    });
-    gsap.to(".mobile-nav-items", {
-      opacity: 0,
-      onComplete() {
-        gsap.set(".mobile-nav-items", {
-          display: "none",
-        });
-      },
-    });
+    CloseNav();
   }
-  IsMobileNavOpen = !IsMobileNavOpen;
 });
 
 
-const GraphicDesignCon = document.querySelector('.mobile-nav .item.graphic')
-const GraphicContent = GraphicDesignCon.querySelector('.item-content')
-const GraphicData = GraphicDesignCon.querySelector(".item-data")
+const PageRedirectors = document.querySelectorAll('.page-redirect')
 
-const DataHeight = 96
-const ContentHeight = 50
-
-function CloseGraphics(){
-  GraphicDesignCon.setAttribute('closed','true')
-  gsap.to(GraphicDesignCon.querySelector('.drop-down'),{
-    rotate:0
+PageRedirectors.forEach(Redirector => {
+  const Type = Redirector.getAttribute('type')
+  const SubType = Redirector.getAttribute('sub-type')
+  Redirector.addEventListener('click',() => {
+    console.log(Type,SubType)
+    localStorage.setItem('work_data',JSON.stringify({
+      Type,
+      SubType
+    }))
+    const Link = document.createElement('a')
+    Link.setAttribute('href','/work.html')
+    Link.click()
   })
-  gsap.to(GraphicDesignCon,{
-    height: ContentHeight 
-  })
-}
-
-GraphicContent.addEventListener('click',e => {
-  const IsClosed = GraphicDesignCon.getAttribute('closed') == 'true'
-  GraphicDesignCon.setAttribute('closed',!IsClosed)
-  if(IsClosed) {
-    gsap.to(GraphicDesignCon.querySelector('.drop-down'),{
-      rotate:180
-    })
-    gsap.to(GraphicDesignCon,{
-      height: ContentHeight + DataHeight
-    })
-  } else {
-    CloseGraphics()
-  }
 })
 
 
+window.addEventListener('scroll',() => {
+  if(IsMobileNavOpen) {
+    CloseNav()
+  }
+})
 
-const ServiceCon = document.querySelector('.item.services')
-const ServiceContent = ServiceCon.querySelector(".item-content")
-const ServiceItemsCon = ServiceCon.querySelector('.item-data')
-const ServiceItems = ServiceItemsCon.querySelectorAll('.item')
+const GraphicDesignCon = document.querySelector(".mobile-nav .item.graphic");
+const GraphicContent = GraphicDesignCon.querySelector(".item-content");
+const GraphicData = GraphicDesignCon.querySelector(".item-data");
 
-let ServiceHeight = 52
-let ServiceContentHeight = 56
+const DataHeight = 96;
+const ContentHeight = 50;
+
+function CloseGraphics() {
+  GraphicDesignCon.setAttribute("closed", "true");
+  gsap.to(GraphicDesignCon.querySelector(".drop-down"), {
+    rotate: 0,
+  });
+  gsap.to(GraphicDesignCon, {
+    height: ContentHeight,
+  });
+}
+
+GraphicContent.addEventListener("click", (e) => {
+  const IsClosed = GraphicDesignCon.getAttribute("closed") == "true";
+  GraphicDesignCon.setAttribute("closed", !IsClosed);
+  if (IsClosed) {
+    gsap.to(GraphicDesignCon.querySelector(".drop-down"), {
+      rotate: 180,
+    });
+    gsap.to(GraphicDesignCon, {
+      height: ContentHeight + DataHeight,
+    });
+  } else {
+    CloseGraphics();
+  }
+});
+
+const ServiceCon = document.querySelector(".item.services");
+const ServiceContent = ServiceCon.querySelector(".item-content");
+const ServiceItemsCon = ServiceCon.querySelector(".item-data");
+const ServiceItems = ServiceItemsCon.querySelectorAll(".item");
+
+let ServiceHeight = 52;
+let ServiceContentHeight = 56;
 let ListenerAdded = false;
-let ServiceChildHeights = []
-let ContainerHeight = ServiceContentHeight
+let ServiceChildHeights = [];
+let ContainerHeight = ServiceContentHeight;
 let MaxHeight = 0;
-function CloseServices(){
-  ServiceItems.forEach(Item => {
-    gsap.to(Item,{
-      height:ServiceHeight,
-    })
-    gsap.to(Item.querySelector('.drop-down'),{
-      rotate:0
-    })
-    Item.setAttribute('closed','true')
-  })
-  ContainerHeight = ServiceContentHeight
-  ServiceCon.setAttribute('closed','true')
-  gsap.to(ServiceContent.querySelector('.drop-down'),{
-    rotate:0
-  })
-  gsap.to(ServiceCon,{
-    height:ContainerHeight
-  })
+function CloseServices() {
+  ServiceItems.forEach((Item) => {
+    gsap.to(Item, {
+      height: ServiceHeight,
+    });
+    gsap.to(Item.querySelector(".drop-down"), {
+      rotate: 0,
+    });
+    Item.setAttribute("closed", "true");
+  });
+  ContainerHeight = ServiceContentHeight;
+  ServiceCon.setAttribute("closed", "true");
+  gsap.to(ServiceContent.querySelector(".drop-down"), {
+    rotate: 0,
+  });
+  gsap.to(ServiceCon, {
+    height: ContainerHeight,
+  });
 }
 
-function AddLister(){
-  ServiceItems.forEach((Item,idx) => {
-    const ItemContent = Item.querySelector('.item-content')
-    const Child = Item.querySelector('.item-data')
-    ItemContent.addEventListener('click',() => {
-      let IsClosed = Item.getAttribute('closed') == 'true'
-      Item.setAttribute('closed',!IsClosed)
-      if(!IsClosed){
-        gsap.to(Item,{
-          height:ServiceChildHeights[idx].closed
-        })
-        gsap.to(Item.querySelector('.drop-down'),{
-          rotate:0
-        })
-        CompressService(idx)
+function AddLister() {
+  ServiceItems.forEach((Item, idx) => {
+    const ItemContent = Item.querySelector(".item-content");
+    const Child = Item.querySelector(".item-data");
+    ItemContent.addEventListener("click", () => {
+      let IsClosed = Item.getAttribute("closed") == "true";
+      Item.setAttribute("closed", !IsClosed);
+      if (!IsClosed) {
+        gsap.to(Item, {
+          height: ServiceChildHeights[idx].closed,
+        });
+        gsap.to(Item.querySelector(".drop-down"), {
+          rotate: 0,
+        });
+        CompressService(idx);
       } else {
-        gsap.to(Item,{
-          height:ServiceChildHeights[idx].total
-        })
-        gsap.to(Item.querySelector('.drop-down'),{
-          rotate:180
-        })
-        ExpandService(idx)
+        gsap.to(Item, {
+          height: ServiceChildHeights[idx].total,
+        });
+        gsap.to(Item.querySelector(".drop-down"), {
+          rotate: 180,
+        });
+        ExpandService(idx);
       }
-    })
-  })
-  ListenerAdded = true
+    });
+  });
+  ListenerAdded = true;
 }
 
-function ExpandService(idx){
-  gsap.to(ServiceCon,{
-    height:ServiceCon.getBoundingClientRect().height + ServiceChildHeights[idx].items
-  })
+function ExpandService(idx) {
+  gsap.to(ServiceCon, {
+    height:
+      ServiceCon.getBoundingClientRect().height +
+      ServiceChildHeights[idx].items,
+  });
 }
 
-function CompressService(idx){
-  gsap.to(ServiceCon,{
-    height:ServiceCon.getBoundingClientRect().height - ServiceChildHeights[idx].items
-  })
+function CompressService(idx) {
+  gsap.to(ServiceCon, {
+    height:
+      ServiceCon.getBoundingClientRect().height -
+      ServiceChildHeights[idx].items,
+  });
 }
 
-function OpenService(){
-  ServiceChildHeights = []
-  ServiceItems.forEach(Item => {
-    const Child = Item.querySelector('.item-data')
-    const ItemRect = Item.querySelector('.item-content').getBoundingClientRect()
-    const ChildRect = Child.getBoundingClientRect()
+function OpenService() {
+  ServiceChildHeights = [];
+  ServiceItems.forEach((Item) => {
+    const Child = Item.querySelector(".item-data");
+    const ItemRect =
+      Item.querySelector(".item-content").getBoundingClientRect();
+    const ChildRect = Child.getBoundingClientRect();
     const ItemObj = {
-      closed:ItemRect.height,
-      total:ItemRect.height + ChildRect.height,
-      items:ChildRect.height
-    }
-    ServiceChildHeights.push(ItemObj)
-  })
-  ContainerHeight += ServiceChildHeights.reduce((Prev,Item) => Prev + Item.closed,0)
-  gsap.to(ServiceContent.querySelector('.drop-down'),{
-    rotate:180
-  })
-  gsap.to(ServiceCon,{
-    height:ContainerHeight
-  })
-  if(!ListenerAdded) {
-    AddLister()
+      closed: ItemRect.height,
+      total: ItemRect.height + ChildRect.height,
+      items: ChildRect.height,
+    };
+    ServiceChildHeights.push(ItemObj);
+  });
+  ContainerHeight += ServiceChildHeights.reduce(
+    (Prev, Item) => Prev + Item.closed,
+    0
+  );
+  gsap.to(ServiceContent.querySelector(".drop-down"), {
+    rotate: 180,
+  });
+  gsap.to(ServiceCon, {
+    height: ContainerHeight,
+  });
+  if (!ListenerAdded) {
+    AddLister();
   } else {
   }
 }
 
-
-ServiceContent.addEventListener('click', e => {
-  const IsClosed = ServiceCon.getAttribute('closed') == 'true'
-  ServiceCon.setAttribute('closed',!IsClosed)
-  if(IsClosed){
-    OpenService()
+ServiceContent.addEventListener("click", (e) => {
+  const IsClosed = ServiceCon.getAttribute("closed") == "true";
+  ServiceCon.setAttribute("closed", !IsClosed);
+  if (IsClosed) {
+    OpenService();
   } else {
-    CloseServices()
+    CloseServices();
   }
-})
-
-
-// const WorksCon = document.querySelector(".works-con");
-
-// function GetTags(Tags) {
-//   let TagsBuffer = "";
-//   Tags.forEach((Tag) => {
-//     TagsBuffer += `<div class="tag">${Tag.trim()}</div>`;
-//   });
-//   return TagsBuffer;
-// }
-// function ShowWorks() {
-//   let Clutter = "";
-//   Works.forEach((Work) => {
-//     let WorkBuffer = `
-//     <div class="work">
-//               <div class="work-content">
-//                 <div class="work-data work-data-video">
-//                   <div class='video-status'>
-//                   <div class='status-icon-play'></div>
-//                   <div class='status-icon-pause'>
-//                   <div class='pause-line'></div>
-//                   <div class='pause-line'></div>
-//                   </div>
-//                   </div>
-//                   <video loop  src="./public/editing-samples/${Work.type}s/${
-//       Work.category
-//     }/${Work.type}${Work.id}.mp4"></video>
-//                 </div>
-//                 <div class="work-info">
-//                   <div class="work-tags">
-//                   ${GetTags(Work.tags)}
-//                   </div>
-//                   <p>Tech Reel Edit - Precision, Flow, and Impact in Every Frame</p>
-//                 </div>
-//               </div>
-//           </div>
-//     `;
-//     Clutter += WorkBuffer;
-//   });
-//   WorksCon.innerHTML = "";
-//   WorksCon.innerHTML = Clutter;
-// }
-
-
-// ShowWorks()
-
-// const WorkDataVideos = gsap.utils.toArray(".work-data-video");
-// WorkDataVideos.forEach((Item) => {
-//   const Video = Item.querySelector("video");
-//   const PlayIcon = Item.querySelector(".status-icon-play");
-//   const PauseIcon = Item.querySelector(".status-icon-pause");
-//   const Parent = Item.parentElement;
-//   Parent.setAttribute('playing','false')
-  
-//   function PlayVideo(){
-//     gsap.killTweensOf(Item);
-//     Video.play();
-//     Parent.setAttribute('playing',!Video.paused)
-//     gsap.to(PlayIcon,{opacity:0})
-//     gsap.to(PauseIcon,{opacity:1})
-//     gsap.to(Item, {
-//       filter: "grayscale(0%)",
-//     });
-//   }
-//   function PauseVideo(){
-//     {
-//       gsap.killTweensOf(Item);
-//       Video.pause();
-//       Parent.setAttribute('playing',!Video.paused)
-//       gsap.to(PlayIcon,{opacity:1})
-//       gsap.to(PauseIcon,{opacity:0})
-//       gsap.to(Item, {
-//         filter: "grayscale(100%)",
-//       });
-//     }
-//   }
-
-  
-//   Parent.addEventListener("click",e => {
-//     const IsPlaying = Parent.getAttribute('playing') == 'true'
-//     if(IsPlaying){
-//       PauseVideo()
-//     } else {
-//       PlayVideo()
-//     }
-//   });
-//   Parent.addEventListener("mouseenter",PlayVideo);
-//   Parent.addEventListener("mouseleave", PauseVideo);
-// });
-
-// // Animations
-
-// const SplitHeadings = gsap.utils.toArray(".split-text-heading");
-
-// SplitHeadings.forEach((Heading) => {
-//   const HeadingSplits = new SplitType(Heading);
-
-//   gsap.set(HeadingSplits.chars, {
-//     y: "100%",
-//   });
-
-//   ScrollTrigger.create({
-//     trigger: Heading,
-//     start: "top 60%",
-//     end: "top 10%",
-//     onEnter() {
-//       gsap.killTweensOf(HeadingSplits.chars);
-//       gsap.to(HeadingSplits.chars, {
-//         y: 0,
-//         stagger: 0.01,
-//         duration: 0.4,
-//       });
-//     },
-//     onLeave() {
-//       gsap.killTweensOf(HeadingSplits.chars);
-//       gsap.to(HeadingSplits.chars, {
-//         y: "100%",
-//         stagger: 0.01,
-//         duration: 0.4,
-//       });
-//     },
-//     onLeaveBack() {
-//       gsap.killTweensOf(HeadingSplits.chars);
-//       gsap.to(HeadingSplits.chars, {
-//         y: "100%",
-//         stagger: 0.01,
-//         duration: 0.4,
-//       });
-//     },
-//     onEnterBack() {
-//       gsap.killTweensOf(HeadingSplits.chars);
-//       gsap.to(HeadingSplits.chars, {
-//         y: 0,
-//         stagger: 0.01,
-//         duration: 0.4,
-//       });
-//     },
-//   });
-
-//   gsap.set(Heading, {
-//     overflow: "hidden",
-//     position: "relative",
-//   });
-// });
-
-// const DescriptionSplits = new SplitType(".description");
-
-// gsap.set(DescriptionSplits.chars, {
-//   opacity: 0.3,
-// });
-
-// const UsLines = gsap.utils.toArray(".why-us .us-line");
-
-// gsap.to(DescriptionSplits.chars, {
-//   opacity: 1,
-//   stagger: 0.01,
-//   duration: 0.5,
-//   ease: "elastic.inOut(1.5)",
-//   scrollTrigger: {
-//     trigger: ".description-con",
-//     start: "top 70%",
-//     end: "center 40%",
-//     scrub: 2,
-//   },
-// });
-
-// ScrollTrigger.create({
-//   trigger: ".why-us",
-//   start: "top 60%",
-//   end: `+=${innerHeight}`,
-//   // pin: true,
-//   scrub: true,
-//   onUpdate: ({ progress }) => {
-//     UsLines.forEach((line, index) => {
-//       const threshold = (index + 1) / UsLines.length; // Define when each line should fade in
-//       let IThress = 1 / UsLines.length
-//       let opacity =  0.3; // Update opacity based on progress
-//       if(progress >= threshold && progress < (IThress + threshold)){
-//         opacity = 1
-//       }
-//       gsap.to(line, { opacity });
-//     });
-//   },
-// });
-
-
-
-// const SubChildOpenerCon = document.querySelectorAll('.sub-child-opener-con')
-
-// SubChildOpenerCon.forEach((Con,i) => {
-//     const Opener = Con.querySelector('.sub-child-opener')
-//     const SubChilds = Con.querySelector('.sub-child-con')
-//     Opener.addEventListener('click', (e) => {
-//         e.preventDefault()
-//         Con.classList.toggle('active')
-//         SubChildOpenerCon.forEach((Con,j) => {
-//           if(i !== j){
-//             Con.classList.remove('active')
-//           }
-//         })
-//     })
-//     document.addEventListener('click', (e) => {
-//         if (!Con.contains(e.target) && Con.classList.contains('active'))  // if the target is not a descendant of the container
-//         SubChildOpenerCon.forEach(Con => Con.classList.remove('active'))
-//     })
-// })
-
+});
