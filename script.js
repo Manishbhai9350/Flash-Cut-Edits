@@ -93,7 +93,7 @@ const GraphicDesignCon = document.querySelector(".mobile-nav .item.graphic");
 const GraphicContent = GraphicDesignCon.querySelector(".item-content");
 const GraphicData = GraphicDesignCon.querySelector(".item-data");
 
-const DataHeight = 96;
+const DataHeight = 110;
 const ContentHeight = 50;
 
 function CloseGraphics() {

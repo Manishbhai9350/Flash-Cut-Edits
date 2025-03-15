@@ -142,25 +142,299 @@ export const WorkData = {
         type:'thumbnail',
         Categories:{
             documentary:{
-                title:'Documentary Thumbnail'
+                title:'Documentary Thumbnail',
+                works:[
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail1.jpg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail2.jpg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail3.jpg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail4.jpg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail5.jpg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail6.jpeg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail7.jpeg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail8.jpg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail9.jpeg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail10.jpeg',
+                        tag:"Documentary Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/documentary/thumbnail11.jpeg',
+                        tag:"Documentary Thumbnail"
+                    },
+                ]
             },
             education:{
-                title:'Education Thumbnails'
+                title:'Education Thumbnails',
+                works:[
+                    {
+                        img:'./public/thumbnails/education/thumbnail1.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/education/thumbnail2.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/education/thumbnail3.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/education/thumbnail4.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/education/thumbnail5.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/education/thumbnail6.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/education/thumbnail7.jpg',
+                        tag:"Educational Thumbnail"
+                    },
+                ]
             },
             fitness:{
-                title:'Fitness Thumbnails'
+                title:'Fitness Thumbnails',
+                works:[
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail1.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail2.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail3.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail4.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail5.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail6.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/fitness/thumbnail7.jpeg',
+                        tag:"Fitness Thumbnail"
+                    },
+                ]
             },
             gaming:{
-                title:'Gaming Thumbnails'
+                title:'Gaming Thumbnails',
+                works:[
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail1.jpg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail2.jpg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail3.jpg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail4.jpeg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail5.jpeg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail6.jpg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail7.jpeg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail8.jpeg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail9.jpeg',
+                        tag:"Gaming Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/gaming/thumbnail10.jpeg',
+                        tag:"Gaming Thumbnail"
+                    },
+                ]
             },
             podcast:{
-                title:'Podcast Thumbnails'
+                title:'Podcast Thumbnails',
+                works:[
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail1.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail2.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail3.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail4.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail5.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail6.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail7.jpeg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail8.jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail9jpg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail10.jpeg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail11.jpeg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail12.jpeg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/podcast/thumbnail13.jpeg',
+                        tag:"Podcast/Interview Thumbnail"
+                    },
+                ]
             },
             tech:{
-                title:'Tech Thumbnails'
+                title:'Tech Thumbnails',
+                works:[
+                    {
+                        img:'./public/thumbnails/tech/thumbnail1.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/tech/thumbnail2.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/tech/thumbnail3.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/tech/thumbnail4.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/tech/thumbnail5.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/tech/thumbnail6.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/tech/thumbnail7.jpeg',
+                        tag:"Tech Thumbnail"
+                    },
+                ]
             },
             trading:{
-                title:'Trading Thumbnails'
+                title:'Trading Thumbnails',
+                works:[
+                    {
+                        img:'./public/thumbnails/trading/thumbnail1.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail2.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail3.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail4.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail5.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail6.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail7.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail8.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail9.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                    {
+                        img:'./public/thumbnails/trading/thumbnail10.jpg',
+                        tag:"Trading Thumbnail"
+                    },
+                ]
             },
             vlog_lifestyle:{
                 title:'Vlog Lifestyle Thumbnails',
