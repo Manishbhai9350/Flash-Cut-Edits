@@ -337,7 +337,7 @@ export const WorkData = {
                         tag:"Podcast/Interview Thumbnail"
                     },
                     {
-                        img:'./public/thumbnails/podcast/thumbnail9jpg',
+                        img:'./public/thumbnails/podcast/thumbnail9.jpg',
                         tag:"Podcast/Interview Thumbnail"
                     },
                     {
